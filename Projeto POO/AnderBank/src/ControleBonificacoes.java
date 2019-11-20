@@ -1,0 +1,14 @@
+import base.Funcionario;
+
+class ControleBonificacoes {
+	private double totalDeBonificacoes = 0;
+
+    public void registra(Funcionario x) {
+    	this.totalDeBonificacoes += x.getBonificacao();
+    }
+    
+    public double getTotalDeBonificacoes() {
+        return this.totalDeBonificacoes;
+    }
+}
+
