@@ -11,20 +11,22 @@ package model.tiposclientes;
  */
 
 public class Cliente {
-	protected String nome;
-	protected String sobrenome;
-	protected String cpf;
-	
+	private String nome;
+	private String sobrenome;
+	private String cpf;
+	private int idade;
+        
 	public Cliente() {
 		
 	}
 	
-	public Cliente(String nome, String sobrenome, String cpf) {
+	public Cliente(String nome, String sobrenome, String cpf, int idade) {
 		super();
 		this.nome = nome;
 		this.sobrenome = sobrenome;
 		this.cpf = cpf;
-	}
+                this.idade = idade;
+        }
 
 	public String getNome() {
 		return nome;
@@ -46,4 +48,11 @@ public class Cliente {
 		return cpf;
 	}
 	
+        public int getIdade(){
+            return idade;
+        }
+        
+        public void setIdade(int idade){
+            this.idade = idade;
+        }
 }

@@ -20,6 +20,7 @@ public class ContaPoupanca extends Conta{
 	}
 	
 	public void gerarTaxa() {
-	     saldo += saldo * .006;
+	     double novo_saldo = getSaldo() * .006;
+             setSaldo(novo_saldo);
 	}
 }

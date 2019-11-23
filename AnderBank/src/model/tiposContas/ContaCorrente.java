@@ -19,7 +19,9 @@ public class ContaCorrente extends Conta{
 	}
 	
 	public void gerarTaxa() {
-	     saldo -= 10.00;
+            double novo_saldo = getSaldo();
+            novo_saldo -= 10.00;
+            setSaldo(novo_saldo);
 	}
 	
 }
