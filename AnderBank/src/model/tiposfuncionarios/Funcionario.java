@@ -78,7 +78,11 @@ public class Funcionario extends Banco {
 			return false;
 		return true;
 	}
-
+           
+        public double getBonificacao(){
+            return this.salario * 0.10;        
+        }
+        
 	public String getNome() {
 		return nome;
 	}
@@ -127,9 +131,7 @@ public class Funcionario extends Banco {
 		return 0; //ver depois
 	}
 
-	public double getBonificacao() {
-		return this.salario * 0.10;
-	}
+	
 
 	@Override
 	public String toString() {

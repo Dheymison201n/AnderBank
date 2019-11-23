@@ -18,7 +18,11 @@ import model.tiposfuncionarios.Funcionario;
 public class Gerente extends Funcionario implements Autentica{
 
 	private int senha;
-
+        private int numDeFuncionarios;
+        
+        
+        
+        
 	public Gerente() {
 		super();
 	}
@@ -31,8 +35,9 @@ public class Gerente extends Funcionario implements Autentica{
 		this.senha = senha;
 	}
 	
+        @Override
 	public double getBonificacao() {
-		return this.salario * 0.15;
+            return super.getBonificacao() + 128;
 	}
 
 	@Override
@@ -45,5 +50,4 @@ public class Gerente extends Funcionario implements Autentica{
             return false;
         }
     }
-	
 }
