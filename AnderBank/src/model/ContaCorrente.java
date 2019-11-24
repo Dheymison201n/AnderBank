@@ -11,14 +11,17 @@ package model;
  */
 
 
-public class ContaCorrente extends Conta{
+public class ContaCorrente extends Conta implements Tributavel{
 
 	public ContaCorrente(int numero, String titular, String data) {
 		super(numero, titular, data);
 	}
 	
 	public void gerarTaxa() {
-	     saldo -= 10.00;
+		saldo -= 10.00;
 	}
 	
+	public double getValorImposto(){
+		return this.getSaldo() * 0.01;
+	}
 }
