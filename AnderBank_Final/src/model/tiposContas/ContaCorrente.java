@@ -18,13 +18,18 @@ public class ContaCorrente extends Conta{
         
 	public ContaCorrente(int numero, String titular, double saldo){
 		super(numero, titular, saldo);
+                
         }
 
     public ContaCorrente() {
     }
 	
 	public void gerarTaxa() {
+            
+            
             double novo_saldo = getSaldo();
+            
+            
             novo_saldo -= 10.00;
             setSaldo(novo_saldo);
 	}

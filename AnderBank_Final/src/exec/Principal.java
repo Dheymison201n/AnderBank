@@ -25,7 +25,7 @@ import model.funcionarios.Diretor;
 import java.util.Scanner;
 
 public class Principal {
-	public static void main(String[] args){
+	public static void main(String[] args) throws Exception{
 		System.out.println(" *** AnderBank ***");
 		Scanner in = new Scanner(System.in);
 		String aux;
@@ -65,19 +65,26 @@ public class Principal {
 			
 			switch(opcao) {
 				case 1:
-                                    System.out.println("Digite 1 para Conta Poupança. ");
-                                    System.out.println("Digite 2 para Conta Corrente. ");
-                                    int num = Integer.parseInt(in.nextLine());
+                                    try{
+                                    System.out.println("Digite 1 para Conta Corrente. ");
+                                    System.out.println("Digite 2 para Conta Poupança. ");
+                                    int num = Integer.parseInt(in.nextLine()); ;
+                                    
                                     
                                     if(num==1){
                                         System.out.println("Nome:");
                                         String titular = in.nextLine();
+                                        for(int i =0;i < titular.length();i++){
+                                            Character caractere = titular.charAt(i);
+                                            if(Character.isDigit(caractere)){
+                                                throw new Exception();
+                                            }
+                                        }
                                         
                                         System.out.println("Número da conta:");
-                                        int numeroConta = Integer.parseInt(in.nextLine());
-                                        
-                                        System.out.println("Limite inicial é de 500");        
-                                        
+                                        int numeroConta = Integer.parseInt(in.nextLine());   
+                                     
+                                        System.out.println("Limite inicial é de 500");
                                         System.out.println("Saldo Inicial: ");
                                         double saldoInicial = Double.parseDouble(in.nextLine());
                                         
@@ -88,8 +95,14 @@ public class Principal {
                                     }
                                     if(num==2){
                                         System.out.println("Nome:");
-                                        String titular = in.next();
-                                       
+                                        String titular = in.nextLine();
+                                        for(int i =0;i < titular.length();i++){
+                                            Character caractere = titular.charAt(i);
+                                            if(Character.isDigit(caractere)){
+                                                throw new Exception();
+                                            }
+                                        }
+                                        
                                         System.out.println("Número da conta:");
                                         int numeroConta = Integer.parseInt(in.nextLine()); 
                                         
@@ -103,52 +116,105 @@ public class Principal {
                                         
                                         lc2.add(contaPoupanca);
                                     }
-					break;
-					
+                                    }
+                                    catch(NumberFormatException e){
+                                        System.out.println("Valores Errados. Por favor, escreva aquilo que está sendo pedido no formato correto!" + " \n Voltando para o menu...");
+                                    }
+                                    catch(Exception e){System.out.println("Não coloque números no nome do Titular da conta!");}
+                                    break;
+                                    
+                                    
 				case 2:
-					System.out.println("Digite o numero da conta para ver os DadosBancarios:");
-					int numero1 = Integer.parseInt(in.nextLine());
-					
-                                        for(Conta conta : lc2){
-                                            if(conta.getNumero()== numero1){
-                                                c1 = conta;
-                                            }
+                                    try{
+                                    System.out.println("Digite o numero da conta para ver os DadosBancarios:");
+                                    int numero1 = Integer.parseInt(in.nextLine());
+                                    boolean contaExixtente = false;
+                                    for(Conta conta : lc2){
+                                        if(conta.getNumero()== numero1){
+                                            contaExixtente = true;
+                                            conta.DadosBancarios();
+                                            
                                         }
-                                        
-                                        
-                                        for(Conta conta : lc){
-                                            if(conta.getNumero()== numero1){
-                                                c1 = conta;
-                                            }
+                                    }
+
+
+                                    for(Conta conta : lc){
+                                        if(conta.getNumero()== numero1){
+                                            contaExixtente = true;
+                                            conta.DadosBancarios();
                                         }
-                                        
-					c1.DadosBancarios();
-					
-					break;
+                                    }
+                                    if(contaExixtente==false){
+                                        System.out.println("A conta buscada não se encontra no sistema.");
+                                    }    
+                                    
+                                    }
+                                    catch(NumberFormatException e){System.out.println("Valores Errados. Por favor, escreva aquilo que está sendo pedido no formato correto!" + " \n Voltando para o menu...");}
+                                    break;
 					
 				case 3:
-					System.out.println("Digite o numero da conta: ");
-					int numeroConta = Integer.parseInt(in.nextLine());
-					c1 = lc.get(numeroConta);
-					c1 = lc2.get(numeroConta);
-                                        System.out.println("Digite o valor do deposito: ");
-					valor = Double.parseDouble(in.nextLine());
-                                        
-					c1.depositar(valor);
-				
-					break;
+                                    try{
+                                    System.out.println("Digite o numero da conta: ");
+                                    int numeroConta = Integer.parseInt(in.nextLine());
+                                    
+                                    boolean test = true;
+                                    
+                                    while(test){
+                                    for(Conta conta: lc){
+                                        if(conta.getNumero() == numeroConta){
+                                            test = false;
+                                            System.out.println("Digite o valor do deposito: ");
+                                            valor = Double.parseDouble(in.nextLine());
+                                            conta.depositar(valor);
+                                            
+                                        }
+                                    }
+                                    if(test== false) break;
+                                    for(Conta conta: lc2){
+                                        if(conta.getNumero() == numeroConta){
+                                            test = false;
+                                            System.out.println("Digite o valor do deposito: ");
+                                            valor = Double.parseDouble(in.nextLine());
+                                            conta.depositar(valor);
+                                            
+                                        }
+                                    }                                   
+                                    if(test== false) break;   
+                                    }
+                                    }
+                                    catch(NumberFormatException e){System.out.println("Valores Errados. Por favor, escreva aquilo que está sendo pedido no formato correto!" + " \n Voltando para o menu...");}
+                                    break;
 				
 				case 4:
-					System.out.println("Digite o numero da conta: ");
-					int numeroDaConta = Integer.parseInt(in.nextLine());
-				
-					c1 = lc.get(numeroDaConta - 1);
-					
-					System.out.println("Digite o valor do deposito: ");
-					valor = Double.parseDouble(in.nextLine());
-					
-					c1.sacar(valor);
-					break;
+                                    
+                                    
+                                    System.out.println("Digite o numero da conta: ");
+                                    int numeroDaConta = Integer.parseInt(in.nextLine());
+                                    
+                                    boolean test = true;
+                                    
+                                    while(test){
+                                    for(Conta conta: lc){
+                                        if(conta.getNumero() == numeroDaConta){
+                                            test = false;
+                                            System.out.println("Digite o valor do deposito: ");
+                                            valor = Double.parseDouble(in.nextLine());
+                                            conta.sacar(valor);
+                                           
+                                        }
+                                    }
+                                    if(test== false) break;
+                                    for(Conta conta: lc2){
+                                        if(conta.getNumero() == numeroDaConta){
+                                            test = false;
+                                            System.out.println("Digite o valor do deposito: ");
+                                            valor = Double.parseDouble(in.nextLine());
+                                            conta.sacar(valor);
+                                        }
+                                    }                                   
+                                    if(test== false) break;   
+                                    }
+                                    break;
                                 
                                 case 5:
                                     /*System.out.println("Nome:");

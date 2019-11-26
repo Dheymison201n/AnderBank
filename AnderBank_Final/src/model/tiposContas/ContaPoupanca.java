@@ -16,17 +16,24 @@ import model.geralconta.Conta;
 public class ContaPoupanca extends Conta{
         
 	public ContaPoupanca(int numero, String titular, double saldo) {
-		super.setTitular(titular);
-                super.setNumero(numero);
-                super.setLimite(500);
-                super.setSaldo(saldo);
+		super(numero,titular, saldo);
+            try{
+            super.setTitular(titular);
+            }
+            
+            catch(RuntimeException e){
+                System.out.println("Erro ao passar o nome do Titular.");
+            }
+            finally{
+                super.setTitular(titular);
+            }
 	}
 
     public ContaPoupanca(){
     }
 	
 	public void gerarTaxa() {
-	     double novo_saldo = getSaldo() * .006;
+	     double novo_saldo = getSaldo()+ (getSaldo()* 0.03153);
              setSaldo(novo_saldo);
 	}
 }

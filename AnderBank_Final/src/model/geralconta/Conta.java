@@ -16,11 +16,11 @@ import model.tiposclientes.Cliente;
 public class Conta {
     //Eu usei static no quantidadeDeContas pois quero guardar a quantidade de contas criadas e se não tivesse o static
     // toda vez que fosse criada uma nova conta, o valor iria se manter em 1.
-    //private static int quantidadeDeContas;
+    
     protected int numero;
     protected double saldo;
     protected double limite;
-        //protected int saques;
+    
     protected String titular;
 
 
@@ -41,10 +41,13 @@ public class Conta {
 	}
 	
     public boolean sacar(double valor){
-        
+        try{
         if(valor<0){
             throw new IllegalArgumentException("Você tentou depositar um valor negativo. Por favor, digite valores que sejam positivos");
             }
+        }
+        catch(IllegalArgumentException e){}
+        
         if(saldo >= valor){
            saldo -= valor;
             //saques++;
@@ -56,17 +59,21 @@ public class Conta {
             return false;
         }
     }
-    
+
     public void depositar(double valor){
+    try{  
         if(valor<0){
-            throw new IllegalArgumentException("Você tentou depositar um valor negativo ou algum valor inválido. Por favor, digite valores que sejam positivos.");
+            throw new IllegalArgumentException("Você tentou depositar um valor negativo ou algum valor inválido. Por favor, digite valores que sejam positivos.");           
         }
-        else{
+    }
+        catch(IllegalArgumentException e){}
+        
+        
         saldo += valor;
         System.out.println("Depositado: " + valor);
         System.out.println("Novo saldo: " + saldo + "\n");
     }
-}
+
     public void transfere(Conta destino, double valor) {
         if(valor<0){
             throw new IllegalArgumentException("Você tentou depositar um valor negativo. Por favor, digite valores que sejam positivos!");
