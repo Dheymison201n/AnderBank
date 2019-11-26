@@ -137,4 +137,18 @@ public class Funcionario extends Banco {
 				+ /*", dataAdmissao=" + dataAdmissao + "*/ "rg=" + rg + "]";
 	}
 
+        
+    public void DadosBancarios() {
+        System.out.println("");
+        System.out.println("---Dados bancários do Funcionario---");
+        System.out.println(" Nome " + this.nome);
+        System.out.println(" Departamento: " +this.departamento);
+        System.out.println(" Saldo: " + this.salario);
+        
+        System.out.println(" Fim dados bancários");
+        
+        System.out.println("");
+        
+    }
+
 }

@@ -4,19 +4,20 @@
  * and open the template in the editor.
  */
 package model.tiposContas;
-
 import model.geralconta.Conta;
 
 /**
  *
  * @author Alysson
+ * 
  */
 
 
 public class ContaPoupanca extends Conta{
         
-	public ContaPoupanca(int numero, String titular, double saldo) {
-		super(numero,titular, saldo);
+	
+        public ContaPoupanca(int numero, String titular, double saldo,String tipoConta) {
+		super(numero,titular, saldo, tipoConta);        
             try{
             super.setTitular(titular);
             }
@@ -27,13 +28,15 @@ public class ContaPoupanca extends Conta{
             finally{
                 super.setTitular(titular);
             }
-	}
+        }
 
     public ContaPoupanca(){
     }
 	
 	public void gerarTaxa() {
-	     double novo_saldo = getSaldo()+ (getSaldo()* 0.03153);
-             setSaldo(novo_saldo);
+            int cem = 100;
+            double novo_saldo = (double)((int)( (getSaldo() + (getSaldo()* 0.03153)) * cem) )/cem;
+             
+            setSaldo(novo_saldo);
 	}
 }

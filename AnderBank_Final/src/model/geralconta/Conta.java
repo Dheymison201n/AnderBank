@@ -20,9 +20,8 @@ public class Conta {
     protected int numero;
     protected double saldo;
     protected double limite;
-    
     protected String titular;
-
+    protected String tipoConta;
 
 
 
@@ -33,11 +32,11 @@ public class Conta {
         System.out.println("Nova conta criada com sucesso!");
         }
 
-        public Conta(int numero, String titular, double saldo){ 
+        public Conta(int numero, String titular, double saldo, String tipoConta){ 
 		this.numero = numero;
 		this.titular = titular;
                 this.saldo = saldo;
-		
+		this.tipoConta = tipoConta;
 	}
 	
     public boolean sacar(double valor){
@@ -93,7 +92,9 @@ public class Conta {
         System.out.println(" número: " + this.numero);
         System.out.println(" titular: " + this.titular);
         System.out.println(" saldo: " + this.saldo);
+         System.out.println(" Tipo de Conta: " + this.tipoConta);
         System.out.println(" fim dados bancários");
+        
         System.out.println("");
                 
 }
@@ -129,4 +130,18 @@ public class Conta {
         public void setTitular(String tilular){
             this.titular = titular;
    }
+
+    /**
+     * @return the tipoConta
+     */
+    public String getTipoConta() {
+        return tipoConta;
+    }
+
+    /**
+     * @param tipoConta the tipoConta to set
+     */
+    public void setTipoConta(String tipoConta) {
+        this.tipoConta = tipoConta;
+    }
 }
