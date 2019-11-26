@@ -15,6 +15,7 @@ import model.tiposfuncionarios.Funcionario;
 import java.util.Scanner;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Date;
 import model.funcionarios.Diretor;
 
 
@@ -28,7 +29,7 @@ public class Principal {
 	public static void main(String[] args) throws Exception{
 		System.out.println(" *** AnderBank ***");
 		Scanner in = new Scanner(System.in);
-		String aux;
+		//String aux;
 		int opcao;
 		double valor;
 		List<ContaCorrente> lc = new ArrayList<>();
@@ -37,9 +38,18 @@ public class Principal {
                 List<Diretor>       lc4 = new ArrayList<>();
                 List<Gerente>       lc5 = new ArrayList<>();
                 
+                Banco AnderBank = new Banco();
+                AnderBank.setCnpj("42864349129-10");
+                AnderBank.setContaCorrente(lc);
+                AnderBank.setContaPoupanca(lc2);
+                AnderBank.setFuncionarios(lc3);
+                AnderBank.setDiretores(lc4);
+                AnderBank.setGerentes(lc5);
                 
 		Conta c1 = new Conta();
-		Funcionario funcionarioT = new Funcionario();
+		
+                Funcionario funcionarioT = new Funcionario();
+                
                 Diretor diretorT = new Diretor();
                 Gerente gerenteT = new Gerente();
                 ContaCorrente contaCorrenteT = new ContaCorrente();
@@ -55,10 +65,14 @@ public class Principal {
                         System.out.println("3) Deposito;");
 			System.out.println("4) Saque;");
 			System.out.println("5) Adicionar funcionario;");
-                        System.out.println("7) Adicionar Diretor");
-                        System.out.println("8) Adicionar Gerente");
+                        System.out.println("6) Adicionar Diretor");
+                        System.out.println("7) Adicionar Gerente");
+                        System.out.println("8) Imprimir todos os clientes.");
+                        System.out.println("9) Imprimir todos o(s) diretor(diretores).");
+                        System.out.println("10) Imprimir todos os Funcionarios.");
+                        System.out.println("11) Imprimir todos os Funcionarios.");
                         
-                        System.out.println("9) Sair");
+                        System.out.println("0) Sair");
 			
 			System.out.println("Opções: ");
 			opcao = Integer.parseInt(in.nextLine());
@@ -92,6 +106,7 @@ public class Principal {
                                         contaCorrente.gerarTaxa();
                                         
                                         lc.add(contaCorrente);
+                                        AnderBank.setContaCorrente(lc);
                                     }
                                     if(num==2){
                                         System.out.println("Nome:");
@@ -115,6 +130,7 @@ public class Principal {
                                         contaPoupanca.gerarTaxa();
                                         
                                         lc2.add(contaPoupanca);
+                                        AnderBank.setContaPoupanca(lc2);
                                     }
                                     }
                                     catch(NumberFormatException e){
@@ -186,8 +202,7 @@ public class Principal {
                                     break;
 				
 				case 4:
-                                    
-                                    
+                                    try{
                                     System.out.println("Digite o numero da conta: ");
                                     int numeroDaConta = Integer.parseInt(in.nextLine());
                                     
@@ -214,25 +229,79 @@ public class Principal {
                                     }                                   
                                     if(test== false) break;   
                                     }
+                                    }
+                                    catch(NumberFormatException e){System.out.println("Valores Errados. Por favor, escreva aquilo que está sendo pedido no formato correto!" + " \n Voltando para o menu...");}
+                                    
                                     break;
                                 
                                 case 5:
-                                    /*System.out.println("Nome:");
-                                    String nomeFuncionario = in.nextLine();
-                                    System.out.println("Departamento:");
-                                    String departamento = in.nextLine(); 
-                                    System.out.println("Salário inicial:");        
-                                    double salarioInicial = Double.parseDouble(in.nextLine());
-                                    System.out.println("Saldo Inicial: ");
-                                    double saldoInicial = Double.parseDouble(in.nextLine());
+                                    try{
+                                    System.out.println("Nome do Funcionário:");
+                                        String funcionario = in.nextLine();
+                                        for(int i =0;i < funcionario.length();i++){
+                                            Character caractere = funcionario.charAt(i);
+                                            if(Character.isDigit(caractere)){
+                                                throw new Exception();
+                                            }
+                                        }
+                                        
+                                        System.out.println("Dpartamento: ");
+                                        String departamento = in.nextLine();
+                                        for(int i =0;i < funcionario.length();i++){
+                                            Character caractere = funcionario.charAt(i);
+                                            if(Character.isDigit(caractere)){
+                                                throw new Exception();
+                                            }
+                                        }
+                                        
+                                        System.out.println("Salário Inicial: ");
+                                        double salarioInicial = Double.parseDouble(in.nextLine());
+                                        
+                                        System.out.println("RG do funcionario: ");
+                                        String RG = in.nextLine(); 
+                                        
+                                        
+                                        Funcionario funcionarioNovo = new Funcionario(funcionario, departamento, salarioInicial, RG);
+                                        lc3.add(funcionarioNovo);
+                                        AnderBank.setFuncionarios(lc3);
+                                        }
+                                    catch(NumberFormatException e){System.out.println("Valores Errados. Por favor, escreva aquilo que está sendo pedido no formato correto!" + " \n Voltando para o menu...");}
+                                    break;
+                                case 6:
+                                    try{
+                                    System.out.println("Nome do Diretor:");
+                                        String diretor = in.nextLine();
+                                        for(int i =0;i < diretor.length();i++){
+                                            Character caractere = diretor.charAt(i);
+                                            if(Character.isDigit(caractere)){
+                                                throw new Exception();
+                                            }
+                                        }
+                                        
+                                        System.out.println("Dpartamento: ");
+                                        String departamento = in.nextLine();
+                                        for(int i =0;i < departamento.length();i++){
+                                            Character caractere = departamento.charAt(i);
+                                            if(Character.isDigit(caractere)){
+                                                throw new Exception();
+                                            }
+                                        }
+                                        
+                                        System.out.println("Salário Inicial: ");
+                                        double salarioInicial = Double.parseDouble(in.nextLine());
+                                        
+                                        System.out.println("RG do Diretor: ");
+                                        String RG = in.nextLine(); 
+                                        
+                                        
+                                        Diretor diretorNovo = new Diretor(diretor, departamento, salarioInicial, RG);
+                                        lc4.add(diretorNovo);
+                                        AnderBank.setDiretores(lc4);
+                                        }
+                                    catch(NumberFormatException e){System.out.println("Valores Errados. Por favor, escreva aquilo que está sendo pedido no formato correto!" + " \n Voltando para o menu...");}
+                                    break;
                                     
-                                    fun
-                                    c1.setNumero(numeroConta);
-                                    c1.setSaldo(saldoInicial);
-                                    c1.setTitular(titular);
-                                    lc.add((ContaCorrente) c1);
                                     
-                                    */
 				default:
 					if(opcao != 0)
 						System.out.println("Opção invalida: ");

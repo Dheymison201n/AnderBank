@@ -20,21 +20,24 @@ import model.tiposfuncionarios.Funcionario;
 import java.util.Scanner;
 import java.util.List;
 import java.util.ArrayList;
+import model.funcionarios.Diretor;
 
 
 public class Banco {
-	private ArrayList<Funcionario> Funcionarios = new ArrayList<Funcionario>();
-	private ArrayList<Cliente> Clientes= new ArrayList<Cliente>();
-        private ArrayList<Gerente> Gerentes = new ArrayList<Gerente>();
-        ArrayList<ContaPoupanca> ContaPoupanca = new ArrayList<ContaPoupanca>(); 
+	private List<Funcionario> Funcionarios = new ArrayList<Funcionario>();
+	private List<Cliente> Clientes= new ArrayList<Cliente>();
+        private List<Gerente> Gerentes = new ArrayList<Gerente>();
+        private List<ContaPoupanca> ContaPoupanca = new ArrayList<ContaPoupanca>(); 
+        private List<Diretor> diretores = new ArrayList<Diretor>();
+        private List<ContaCorrente> contaCorrente = new ArrayList<ContaCorrente>();
         
         protected String cnpj;
 	
 	public Banco() {      
         }
 	
-	public Banco(ArrayList<Funcionario> funcionarios, ArrayList<Cliente> clientes
-                ,ArrayList<Gerente> gerentes, String cnpj){
+	public Banco(List<Funcionario> funcionarios, List<Cliente> clientes
+                ,List<Gerente> gerentes, String cnpj){
 		super();
 		Funcionarios = funcionarios;
 		Clientes = clientes;
@@ -43,28 +46,34 @@ public class Banco {
                 this.cnpj = cnpj;
 	}
 	
-	public ArrayList<Funcionario> getFuncionarios() {
+	public List<Funcionario> getFuncionarios() {
 		return Funcionarios;
 	}
-	public void setFuncionarios(ArrayList<Funcionario> funcionarios) {
+	public void setFuncionarios(List<Funcionario> funcionarios) {
 		Funcionarios = funcionarios;
 	}
 	
-        public ArrayList<Cliente> getClientes() {
+        public List<Cliente> getClientes() {
 		return Clientes;
 	}
-	public void setClientes(ArrayList<Cliente> clientes) {
+	public void setClientes(List<Cliente> clientes) {
 		Clientes = clientes;
 	}
         
-        public ArrayList<Gerente> getGerentes() {
+        public List<Gerente> getGerentes() {
 		return Gerentes;
 	}
-	public void setGerentes(ArrayList<Gerente> gerentes) {
+	public void setGerentes(List<Gerente> gerentes) {
 		Gerentes = gerentes;
 	}
         
-       
+    public List<Diretor> getDiretores() {
+        return diretores;
+    }
+
+    public void setDiretores(List<Diretor> diretores) {
+        this.diretores = diretores;
+    }       
         
         public String getCnpj() {
 		return cnpj;
@@ -73,4 +82,31 @@ public class Banco {
 		this.cnpj = cnpj;
 	}
 
+    /**
+     * @return the ContaPoupanca
+     */
+    public List<ContaPoupanca> getContaPoupanca() {
+        return ContaPoupanca;
+    }
+
+    /**
+     * @param ContaPoupanca the ContaPoupanca to set
+     */
+    public void setContaPoupanca(List<ContaPoupanca> ContaPoupanca) {
+        this.ContaPoupanca = ContaPoupanca;
+    }
+
+    /**
+     * @return the contaCorrente
+     */
+    public List<ContaCorrente> getContaCorrente() {
+        return contaCorrente;
+    }
+
+    /**
+     * @param contaCorrente the contaCorrente to set
+     */
+    public void setContaCorrente(List<ContaCorrente> contaCorrente) {
+        this.contaCorrente = contaCorrente;
+    }
 }

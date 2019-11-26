@@ -16,18 +16,16 @@ public class Funcionario extends Banco {
 	protected String nome;
 	protected String departamento;
 	protected double salario;
-	protected Date dataAdmissao;
 	protected String rg;
 	
 	public Funcionario(){
 		
     }
  
-    public Funcionario(String nome, String departamento, double salario, Date dataAdmissao, String rg) {
+    public Funcionario(String nome, String departamento, double salario, String rg) {
     	this.nome = nome;
     	this.departamento = departamento;
     	this.salario = salario;
-    	this.dataAdmissao = dataAdmissao;
     	this.rg = rg;
     }
 
@@ -35,7 +33,7 @@ public class Funcionario extends Banco {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((dataAdmissao == null) ? 0 : dataAdmissao.hashCode());
+		//result = prime * result + ((dataAdmissao == null) ? 0 : dataAdmissao.hashCode());
 		result = prime * result + ((departamento == null) ? 0 : departamento.hashCode());
 		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
 		result = prime * result + ((rg == null) ? 0 : rg.hashCode());
@@ -54,11 +52,11 @@ public class Funcionario extends Banco {
 		if (getClass() != obj.getClass())
 			return false;
 		Funcionario other = (Funcionario) obj;
-		if (dataAdmissao == null) {
+		/*if (dataAdmissao == null) {
 			if (other.dataAdmissao != null)
 				return false;
 		} else if (!dataAdmissao.equals(other.dataAdmissao))
-			return false;
+			return false;*/
 		if (departamento == null) {
 			if (other.departamento != null)
 				return false;
@@ -107,14 +105,14 @@ public class Funcionario extends Banco {
 		this.salario = salario;
 	}
 
-	public Date getDataAdmissao() {
+/*	public Date getDataAdmissao() {
 		return dataAdmissao;
 	}
-
-	public void setDataAdmissao(Date dataAdmissao) {
+*/
+/*	public void setDataAdmissao(Date dataAdmissao) {
 		this.dataAdmissao = dataAdmissao;
 	}
-
+*/
 	public String getRg() {
 		return rg;
 	}
@@ -136,7 +134,7 @@ public class Funcionario extends Banco {
 	@Override
 	public String toString() {
 		return "Funcionario [nome=" + nome + ", departamento=" + departamento + ", salario=" + salario
-				+ ", dataAdmissao=" + dataAdmissao + ", rg=" + rg + "]";
+				+ /*", dataAdmissao=" + dataAdmissao + "*/ "rg=" + rg + "]";
 	}
 
 }

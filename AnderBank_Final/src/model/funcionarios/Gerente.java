@@ -27,8 +27,8 @@ public class Gerente extends Funcionario implements Autentica{
 		super();
 	}
 
-	public Gerente(String nome, String departamento, double salario, Date dataAdmissao, String rg) {
-		super(nome, departamento, salario, dataAdmissao, rg);
+	public Gerente(String nome, String departamento, double salario, String rg) {
+		super(nome, departamento, salario, rg);
 	}
 	
 	public void setSenha(int senha) {

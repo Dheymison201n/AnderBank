@@ -14,7 +14,7 @@ import model.geralconta.Conta;
  * @author Alysson
  */
 
-public class Cliente {
+public abstract class Cliente {
 	private String nome;
 	private String sobrenome;
 	private String cpf;
